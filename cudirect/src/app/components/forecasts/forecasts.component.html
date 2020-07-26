@@ -1,0 +1,10 @@
+<p>forecasts works!</p>
+
+<div *ngFor="let forecastModel of forecastModels">
+	<div>Date: {{forecastModel.date}}</div>
+	<div>Temp: {{forecastModel.temp}}</div>
+	<div>Humidity: {{forecastModel.humidity}}</div>
+
+	<app-forecast [forecastModel]="forecastModel"></app-forecast>
+</div>
+
