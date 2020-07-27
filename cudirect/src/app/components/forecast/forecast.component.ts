@@ -7,7 +7,7 @@ import { ForecastModel } from '../../models/forecastModel';
   styleUrls: ['./forecast.component.css']
 })
 export class ForecastComponent implements OnInit {
-  @Input forecastModel: ForecastModel;
+  @Input() forecastModel: ForecastModel;
 
   constructor() { }
 

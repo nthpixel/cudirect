@@ -13,9 +13,14 @@ export class ForecastsComponent implements OnInit {
   constructor(private forecastService: ForecastService) { }
 
   ngOnInit(): void {
-    
-    this.forecastService.getForecast().subscribe(data => {console.log(data)});
-    
+    let d: any;
+    this.forecastService.getForecast().subscribe(data => this.foo(data));
+  }
+
+  foo(data:any)
+  {
+    console.log(data);
+    console.log(data["list"]);
   }
 
 }
