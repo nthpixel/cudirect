@@ -1,12 +1,15 @@
-export interface ForecastApiResponse {
-	cod: string,
-	message: string,
-	cnt: number,
-	list: ForecastModel[]
+export interface ForecastModel {
+	city: string,
+	forecastDays: ForecastDayModel[]
 }
 
-export interface ForecastModel {
+export interface ForecastDayModel {
 	date: Date,
-	temp: Number,
-	humidity: Number
+	forecastHours: ForecastHourModel[]
+}
+
+export interface ForecastHourModel {
+	date: Date,
+	temp: number,
+	humidity: number
 }
