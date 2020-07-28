@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ForecastDayModel } from '../../models/forecastModel';
+import { ForecastModel, ForecastDayModel, ForecastHourModel } from '../../models/forecastModel';
 import { ForecastService } from '../../services/forecast.service';
 
 @Component({
@@ -8,23 +8,15 @@ import { ForecastService } from '../../services/forecast.service';
   styleUrls: ['./forecasts.component.css']
 })
 export class ForecastsComponent implements OnInit {
-  public forecastDayModels: ForecastDayModel[];
+  public forecastModel: ForecastModel;
 
   constructor(private forecastService: ForecastService) { }
 
   ngOnInit(): void {
-    //let d: any;
-    //this.forecastService.getForecast().subscribe(data => this.foo(data));
-    let d = this.forecastService.getForecast();
-    // console.log("got forecast");
-    console.log(d);
-    // console.log("logged forecast");
+    this.forecastService.getForecast().then(data => {
+      this.forecastModel = data;
+      var d = new Date();
+      
+    });
   }
-
-  foo(data:any)
-  {
-    console.log(data);
-    console.log(data["list"]);
-  }
-
 }

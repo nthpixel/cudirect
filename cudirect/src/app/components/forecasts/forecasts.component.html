@@ -1,10 +1,12 @@
-<p>forecasts works!</p>
+<div *ngIf="forecastModel">
+    <div *ngFor="let forecastDay of forecastModel.forecastDays">
+        <h2>{{forecastDay.date.toDateString()}}</h2>
 
-<div *ngFor="let forecastDayModel of forecastDayModels">
-	<!-- <div>Date: {{forecastModel.date}}</div>
-	<div>Temp: {{forecastModel.temp}}</div>
-	<div>Humidity: {{forecastModel.humidity}}</div> -->
+        <div *ngFor="let forecastHour of forecastDay.forecastHours" class="row">
+            <div class="col-xs-2">
+                <app-forecast [forecastHour]="forecastHour"></app-forecast>
+            </div>
+        </div>
 
-	<!-- <app-forecast [forecastModel]="forecastModel"></app-forecast> -->
+    </div>
 </div>
-

@@ -11,15 +11,13 @@ export class ForecastService {
   private apiUrl = "http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=def93063f68846ee5ced8bd99611bcee";
   constructor(private http: HttpClient) { }
 
-  getForecast(): Observable<any> {
-    console.log("getForecast");
-    let forecastDays: ForecastDayModel[];
-    // this.getForeCastData().subscribe(d => {
-    //   console.log(d);
-    //   return this.mapApiDataToForecastDayModels(d)
-    // });
-
-    return this.getForeCastData();
+  getForecast(): Promise<ForecastModel> {
+    console.log("getForecast 2");
+    return new Promise(resolve => {
+      this.getForeCastData().subscribe(d => {
+        resolve(this.mapApiDataToForecastDayModels(d));
+      });
+    });
   }
 
   private mapApiDataToForecastDayModels(data: any): ForecastModel
@@ -33,7 +31,6 @@ export class ForecastService {
 
     data["list"].map(l => {
       let dt: Date = new Date(l.dt_txt);
-      //console.log(dt.toDateString());
       let forecastDay: ForecastDayModel = forecastDays.find(fd => fd.date.toDateString() === dt.toDateString());
       if (!forecastDay) {
         forecastDay = {
@@ -55,7 +52,7 @@ export class ForecastService {
       }
     });
 
-    console.log(forecastModel);
+    //console.log(forecastModel);
     return forecastModel;
   }
 
