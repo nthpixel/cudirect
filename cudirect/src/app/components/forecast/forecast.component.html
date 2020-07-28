@@ -1,6 +1,16 @@
-<h3>{{forecastHour.date.toLocaleTimeString()}}</h3>
-<h4>{{forecastHour.date}}</h4>
+<div class="row">
+	<div class="col-xs-2">{{forecastHour.date.toLocaleTimeString()}}</div>
 
-<div>
+	<div class="col-xs-2">
+		{{forecastHour.main}} ({{forecastHour.description}})
+	</div>
 
+
+	<div class="col-xs-2">
+		<label>Temp:</label><span>{{forecastHour.temp}}&deg; F</span>
+	</div>
+
+	<div class="col-xs-2">
+		<label>Humidity:</label><span>{{forecastHour.humidity}}%</span>
+	</div>
 </div>

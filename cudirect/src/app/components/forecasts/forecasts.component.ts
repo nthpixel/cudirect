@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ForecastModel, ForecastDayModel, ForecastHourModel } from '../../models/forecastModel';
+import { ForecastModel } from '../../models/forecastModel';
 import { ForecastService } from '../../services/forecast.service';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { zip } from 'rxjs';
 
 @Component({
   selector: 'app-forecasts',
@@ -8,15 +11,22 @@ import { ForecastService } from '../../services/forecast.service';
   styleUrls: ['./forecasts.component.css']
 })
 export class ForecastsComponent implements OnInit {
-  public forecastModel: ForecastModel;
+  forecastModel: ForecastModel;
+  zip: string = "";
 
   constructor(private forecastService: ForecastService) { }
 
   ngOnInit(): void {
-    this.forecastService.getForecast().then(data => {
+  }
+
+  submitZip(): void {
+    if(this.zip.length != 5 || Number(this.zip) == NaN) {
+      alert("Please enter a valid 5 digit zip code.")
+      return;
+    }
+
+    this.forecastService.getForecast(this.zip).then(data => {
       this.forecastModel = data;
-      var d = new Date();
-      
     });
   }
 }

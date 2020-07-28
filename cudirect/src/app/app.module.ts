@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { ForecastsComponent } from './components/forecasts/forecasts.component';
 import { ForecastComponent } from './components/forecast/forecast.component';
 import { HttpClientModule }    from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { HttpClientModule }    from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

@@ -1,6 +1,7 @@
 export interface ForecastModel {
 	city: string,
-	forecastDays: ForecastDayModel[]
+	forecastDays: ForecastDayModel[],
+	error: string
 }
 
 export interface ForecastDayModel {
@@ -10,6 +11,8 @@ export interface ForecastDayModel {
 
 export interface ForecastHourModel {
 	date: Date,
+	main: string,
+	description: string,
 	temp: number,
 	humidity: number
 }

@@ -1,12 +1,30 @@
+<div>
+	Please enter a zip code in the United States
+</div>
+<div class="promptInput">
+	<input maxlength="5" [(ngModel)]="zip" /> <button (click)="submitZip()">GO</button>
+</div>
+
 <div *ngIf="forecastModel">
-    <div *ngFor="let forecastDay of forecastModel.forecastDays">
-        <h2>{{forecastDay.date.toDateString()}}</h2>
+	<div *ngIf="forecastModel.error != ''; else showForecast" class="error">
+		ERROR: {{forecastModel.error | uppercase}}
+	</div>
+	<ng-template #showForecast>
+	<div>
+		<div class="weatherTitle">
+		Weather for {{zip}} ({{forecastModel.city}})
+	</div>
 
-        <div *ngFor="let forecastHour of forecastDay.forecastHours" class="row">
-            <div class="col-xs-2">
-                <app-forecast [forecastHour]="forecastHour"></app-forecast>
-            </div>
-        </div>
+		<div *ngFor="let forecastDay of forecastModel.forecastDays">
+			<h3>{{forecastDay.date.toDateString()}}</h3>
 
-    </div>
+			<div *ngFor="let forecastHour of forecastDay.forecastHours">
+				<div>
+					<app-forecast [forecastHour]="forecastHour"></app-forecast>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</ng-template>
 </div>
